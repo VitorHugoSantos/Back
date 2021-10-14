@@ -17,4 +17,30 @@ Route::prefix('login')->group(function () {
     Route::post('/users', "UsersController@index");
 });
 
+Route::prefix('cadastro')->group(function () {
+    //Agendamento
+    Route::prefix('agendamento')->group(function () {
+        Route::post('/salvar/cliente', "AgendamentoHorarioController@salvarCliente");
+        Route::post('/busca/cliente', "AgendamentoHorarioController@buscaCliente");
+        Route::post('/busca/acessorios', "AgendamentoHorarioController@buscaAcessorios");
+        Route::post('/salvar', "AgendamentoHorarioController@salvar");
+    });
+
+    //Acessorios
+    Route::prefix('acessorio')->group(function () {
+        Route::post('/salvar', "AcessoriosController@salvar");
+    });
+
+    //Gastos
+    Route::prefix('gastos')->group(function () {
+        Route::post('/salvar', "GastosController@salvar");
+    });
+
+});
+
+//Agenda
+Route::prefix('agenda')->group(function () {
+    Route::post('/busca/horarios', "AgendaController@buscaHorarios");
+    Route::post('/altera/horario', "AgendaController@alteraHorario");
+});
 

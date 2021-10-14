@@ -13,6 +13,7 @@ class CreateAccessoriesTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('accessories', function (Blueprint $table) {
             $table->bigIncrements('acccodigo');
             $table->string('acctype');

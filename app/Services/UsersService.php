@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Services;
 
-class UsersService extends Service {
+class UsersService{
     public function index($request){
         dd($request);
     }
