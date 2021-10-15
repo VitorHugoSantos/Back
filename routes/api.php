@@ -49,3 +49,10 @@ Route::prefix('agenda')->group(function () {
     Route::post('/altera/horario', "AgendaController@alteraHorario");
 });
 
+//Relatórios
+Route::prefix('relatorio')->group(function () {
+    Route::prefix('extrato')->group(function () {
+        Route::post('/gerar/relatorio', "ExtratoController@gerarRelatorio");
+    });
+});
+

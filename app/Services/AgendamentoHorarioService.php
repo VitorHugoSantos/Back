@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Client;
 use App\Models\Accessories;
 use App\Models\Hairstyle;
+use \Datetime;
 
 class AgendamentoHorarioService{
 
@@ -35,6 +36,19 @@ class AgendamentoHorarioService{
     public function salvar($request){
         try{
             $dataHoraPenteado = $request->dataPenteado.' '.$request->horaPenteado;
+            $dataHoraAgendadas = Hairstyle::select('haidaytime')
+                                            ->where('haidaytime', $dataHoraPenteado)
+                                            ->first();
+            if(isset($dataHoraAgendadas)){
+                return Response(['status' => true, 
+                'message' => 'Já existe um agendamento para esta data e horário'], 202);
+            }
+
+            // $dataHoraAgendadas = Hairstyle::select('haidaytime')
+            //                                 ->where('haidaytime', '<', $dataHoraPenteado)
+            //                                 ->first();
+            // $data = DateTime::createFromFormat("d/m/Y H:i", $dataHoraPenteado);
+            // dd($data);
             // $dataHoraTestePenteado = $request->dataTeste.' '.$request->horaTeste;
             $salva = new Hairstyle;
             $salva->haicliente = $request->haicliente;
