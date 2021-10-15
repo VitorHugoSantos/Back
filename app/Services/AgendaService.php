@@ -14,11 +14,15 @@ class AgendaService{
     }
 
     public function alteraHorario($request){
-        $id            = $request['dado']['id'];
-        $newHaidaytime = $request['dado']['startdate'];
-        $alteraHorario = Hairstyle::find($id);
-        $alteraHorario->haidaytime = $newHaidaytime;
-        $alteraHorario->save();
-        dd($alteraHorario);
+        try{
+            $id            = $request['dado']['id'];
+            $newHaidaytime = $request['dado']['startdate'];
+            $alteraHorario = Hairstyle::find($id);
+            $alteraHorario->haidaytime = $newHaidaytime;
+            $alteraHorario->save();
+            return Response(['status' => true, 'dados' => $alteraHorario], 201);
+        } catch (\Exception $e) {
+            return Response(['status' => false, 'error' => $e], 200);
+        }
     }
 }

@@ -36,6 +36,11 @@ Route::prefix('cadastro')->group(function () {
         Route::post('/salvar', "GastosController@salvar");
     });
 
+    //Gastos
+    Route::prefix('recebimentos')->group(function () {
+        Route::post('/salvar', "RecebimentosController@salvar");
+    });
+
 });
 
 //Agenda

@@ -21,11 +21,15 @@ class AgendamentoHorarioService{
     }
 
     public function salvarCliente($request){
-        $salva = new Client;
-        $salva->cliname = $request->cliname;
-        $salva->cliphone = $request->cliphone;
-        $salva->save();
-        dd($salva);
+        try{
+            $salva = new Client;
+            $salva->cliname = $request->cliname;
+            $salva->cliphone = $request->cliphone;
+            $salva->save();
+            return Response(['status' => true, 'dados' => $salva], 201);
+        } catch (\Exception $e) {
+            return Response(['status' => false, 'error' => $e], 200);
+        }
     }
 
     public function salvar($request){
@@ -44,7 +48,7 @@ class AgendamentoHorarioService{
             $salva->haicancelDesc = $request->haicancelDesc;
             $salva->haitest = $request->haitest;
             // $salva->haitestdaytime = $request->haitestdaytime;
-            // $salva->save();
+            $salva->save();
             return Response(['status' => true], 201);
         } catch (\Exception $e) {
             return Response(['status' => false], 200);
