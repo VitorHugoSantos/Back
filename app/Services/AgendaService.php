@@ -16,7 +16,7 @@ class AgendaService{
     public function alteraHorario($request){
         try{
             $id            = $request['dado']['id'];
-            $newHaidaytime = $request['dado']['startdate'];
+            $newHaidaytime = $request['dado']['dataEdicao'];
             $dataHoraAgendadas = Hairstyle::select('haidaytime')
                                             ->where('haidaytime', $newHaidaytime)
                                             ->first();
