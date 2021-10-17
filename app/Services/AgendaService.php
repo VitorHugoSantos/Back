@@ -7,7 +7,8 @@ use App\Models\Hairstyle;
 class AgendaService{
 
     public function buscaHorarios(){
-        $horarios = Hairstyle::selectRaw('haicodigo as id, cliname as title, haidaytime as startDate')
+        $horarios = Hairstyle::selectRaw('haicodigo as id, cliname as title, haidaytime as startDate, 
+                                        haisize, haitype, haieventtime, haidistime, haiexetime, cliname')
                             ->leftJoin('client', 'haicliente', 'clicodigo')
                         ->get();
         return Response(['status' => true, 'dados' => $horarios], 200);
